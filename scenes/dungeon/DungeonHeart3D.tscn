@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/heart/DungeonHeart3D.gd" id="1_heart"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1"]
+height = 4.0
+radius = 2.2
+
+[sub_resource type="StandardMaterial3D" id="Mat_Monolith"]
+albedo_color = Color(0.06, 0.07, 0.1, 1)
+metallic = 0.8
+roughness = 0.2
+emission_enabled = true
+emission = Color(0.2, 0.02, 0.05, 1)
+emission_energy_multiplier = 0.8
+
+[sub_resource type="BoxMesh" id="BoxMesh_Monolith"]
+material = SubResource("Mat_Monolith")
+size = Vector3(1.4, 3.2, 1.4)
+
+[sub_resource type="StandardMaterial3D" id="Mat_Core"]
+albedo_color = Color(0.9, 0.05, 0.15, 1)
+roughness = 0.1
+emission_enabled = true
+emission = Color(1, 0.08, 0.18, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_Core"]
+material = SubResource("Mat_Core")
+radius = 0.95
+height = 1.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_Roots"]
+albedo_color = Color(0.12, 0.05, 0.08, 1)
+roughness = 0.9
+emission_enabled = true
+emission = Color(0.4, 0.02, 0.06, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="TorusMesh" id="TorusMesh_Roots"]
+material = SubResource("Mat_Roots")
+inner_radius = 1.8
+outer_radius = 2.8
+
+[node name="DungeonHeart3D" type="Area3D" groups=["dungeon_heart"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_heart")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+shape = SubResource("CylinderShape3D_1")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="MonolithMesh" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 0, 1.8, 0)
+mesh = SubResource("BoxMesh_Monolith")
+
+[node name="CoreMesh" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+mesh = SubResource("SphereMesh_Core")
+
+[node name="RootsMesh" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(1, 0, 0, 0, 0.2, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("TorusMesh_Roots")
+
+[node name="PulseLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+light_color = Color(1, 0.12, 0.22, 1)
+light_energy = 3.2
+omni_range = 14.0
+omni_attenuation = 1.2
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8, 0)
+billboard = 1
+double_sided = false
+modulate = Color(1, 0.85, 0.85, 1)
+outline_modulate = Color(0, 0, 0, 1)
+text = "HEART CORE: 100 / 100"
+font_size = 32
+outline_size = 6

@@ -1,0 +1,7 @@
+# Godot 4+ .gitignore
+.godot/
+*.translation
+build/
+web_build/
+*.tmp
+*.log

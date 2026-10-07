@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; but it can also be edited by text editors.
+
+config_version=5
+
+[application]
+
+config/name="The Dungeon Remembers"
+config/description="An adaptive dungeon-defense strategy game where the player is a living dungeon."
+run/main_scene="res://scenes/ui/TitleScreen.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+
+
+[autoload]
+
+EventBus="*res://scripts/core/EventBus.gd"
+ResourceManager="*res://scripts/core/ResourceManager.gd"
+GameManager="*res://scripts/core/GameManager.gd"
+MemoryManager="*res://scripts/memory/MemoryManager.gd"
+RoomManager="*res://scripts/core/RoomManager.gd"
+AudioManager="*res://scripts/core/AudioManager.gd"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep"
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="traps"
+2d_physics/layer_4="heart"
+3d_physics/layer_1="world"
+3d_physics/layer_2="enemies"
+3d_physics/layer_3="traps"
+3d_physics/layer_4="heart"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

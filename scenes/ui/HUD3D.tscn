@@ -1,0 +1,466 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/HUD3D.gd" id="1_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/LoreModal.tscn" id="2_lore"]
+[ext_resource type="PackedScene" path="res://scenes/ui/SettingsModal.tscn" id="3_settings"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_BarBg"]
+bg_color = Color(0.12, 0.05, 0.07, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_BarFill"]
+bg_color = Color(0.85, 0.12, 0.22, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Panel"]
+bg_color = Color(0.08, 0.08, 0.12, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.15, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_MemoryModal"]
+bg_color = Color(0.06, 0.07, 0.1, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.6, 0.9, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_BottomBar"]
+bg_color = Color(0.06, 0.06, 0.09, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.1, 0.18, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HUD3D" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_hud")
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = -16.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+
+[node name="HeartContainer" type="PanelContainer" parent="TopBar"]
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Panel")
+
+[node name="VBox" type="VBoxContainer" parent="TopBar/HeartContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HPLabel" type="Label" parent="TopBar/HeartContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.85, 1)
+theme_override_font_sizes/font_size = 12
+text = "HEART CORE: 100 / 100"
+horizontal_alignment = 1
+
+[node name="HPBar" type="ProgressBar" parent="TopBar/HeartContainer/VBox"]
+custom_minimum_size = Vector2(185, 10)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_BarBg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_BarFill")
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="ResourceContainer" type="PanelContainer" parent="TopBar"]
+custom_minimum_size = Vector2(290, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Panel")
+
+[node name="HBox" type="HBoxContainer" parent="TopBar/ResourceContainer"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 14
+
+[node name="GoldLabel" type="Label" parent="TopBar/ResourceContainer/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.2, 1)
+theme_override_font_sizes/font_size = 13
+text = "GOLD: 100"
+
+[node name="EssenceLabel" type="Label" parent="TopBar/ResourceContainer/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.35, 0.75, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "ESSENCE: 25"
+
+[node name="EnergyLabel" type="Label" parent="TopBar/ResourceContainer/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.45, 1)
+theme_override_font_sizes/font_size = 13
+text = "ENERGY: 50"
+
+[node name="WaveContainer" type="PanelContainer" parent="TopBar"]
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Panel")
+
+[node name="VBox" type="VBoxContainer" parent="TopBar/WaveContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WaveLabel" type="Label" parent="TopBar/WaveContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 12
+text = "WAVE 1: IGNORANCE"
+horizontal_alignment = 1
+
+[node name="EnemiesLabel" type="Label" parent="TopBar/WaveContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.6, 1)
+theme_override_font_sizes/font_size = 11
+text = "ENEMIES: 0"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MemoryBtn" type="Button" parent="TopBar"]
+custom_minimum_size = Vector2(165, 48)
+layout_mode = 2
+text = "MEMORY [M]"
+
+[node name="StartWaveBtn" type="Button" parent="TopBar"]
+custom_minimum_size = Vector2(135, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+text = "START WAVE 1"
+
+[node name="PauseBtn" type="Button" parent="TopBar"]
+custom_minimum_size = Vector2(85, 48)
+layout_mode = 2
+text = "PAUSE"
+
+[node name="BottomBar" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -68.0
+offset_right = -30.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_BottomBar")
+
+[node name="HBox" type="HBoxContainer" parent="BottomBar"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="BuildSpikeBtn" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+text = "Spike (40G)"
+
+[node name="BuildRockBtn" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+text = "Rock (60G)"
+
+[node name="BuildPoisonBtn" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+text = "Poison (50G)"
+
+[node name="BuildIllusionBtn" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+text = "Illusion (35G)"
+
+[node name="VSep1" type="VSeparator" parent="BottomBar/HBox"]
+layout_mode = 2
+
+[node name="SummonGoblinBtn" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+text = "Goblin (40G)"
+
+[node name="SummonShadowBtn" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(125, 36)
+layout_mode = 2
+text = "Shadow (70G)"
+
+[node name="SummonMimicBtn" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+text = "Mimic (60G)"
+
+[node name="VSep2" type="VSeparator" parent="BottomBar/HBox"]
+layout_mode = 2
+
+[node name="ShiftBtn" type="Button" parent="BottomBar/HBox"]
+custom_minimum_size = Vector2(165, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+text = "DUNGEON SHIFT (15E)"
+
+[node name="MemoryModal" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -220.0
+offset_right = 340.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_MemoryModal")
+
+[node name="VBox" type="VBoxContainer" parent="MemoryModal"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderLabel" type="Label" parent="MemoryModal/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "THE MEMORY CHAMBER — INVADER RECOLLECTION"
+horizontal_alignment = 1
+
+[node name="Scroll" type="ScrollContainer" parent="MemoryModal/VBox"]
+custom_minimum_size = Vector2(640, 260)
+layout_mode = 2
+
+[node name="MemoryListLabel" type="Label" parent="MemoryModal/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.88, 0.92, 1)
+theme_override_font_sizes/font_size = 14
+text = "Scanning collective consciousness..."
+
+[node name="AdaptationStatusLabel" type="Label" parent="MemoryModal/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 14
+text = "ADAPTATION STATE: IGNORANCE (Direct Pathing)"
+horizontal_alignment = 1
+
+[node name="CloseBtn" type="Button" parent="MemoryModal/VBox"]
+custom_minimum_size = Vector2(140, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CLOSE [M]"
+
+[node name="PausePanel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(340, 310)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -155.0
+offset_right = 170.0
+offset_bottom = 155.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Panel")
+
+[node name="PauseVBox" type="VBoxContainer" parent="PausePanel"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="PauseTitle" type="Label" parent="PausePanel/PauseVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "DUNGEON SLUMBER (PAUSED)"
+horizontal_alignment = 1
+
+[node name="HSep1" type="HSeparator" parent="PausePanel/PauseVBox"]
+layout_mode = 2
+
+[node name="ResumeBtn" type="Button" parent="PausePanel/PauseVBox"]
+custom_minimum_size = Vector2(220, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+text = "RESUME AWAKENING"
+
+[node name="LoreBtn" type="Button" parent="PausePanel/PauseVBox"]
+custom_minimum_size = Vector2(220, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "LORE & TACTICS"
+
+[node name="SettingsBtn" type="Button" parent="PausePanel/PauseVBox"]
+custom_minimum_size = Vector2(220, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "AUDIO & SETTINGS"
+
+[node name="RestartBtn" type="Button" parent="PausePanel/PauseVBox"]
+custom_minimum_size = Vector2(220, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RESTART RUN"
+
+[node name="TitleBtn" type="Button" parent="PausePanel/PauseVBox"]
+custom_minimum_size = Vector2(220, 34)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RETURN TO TITLE"
+
+[node name="DefeatPanel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(460, 340)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -170.0
+offset_right = 230.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Panel")
+
+[node name="VBox" type="VBoxContainer" parent="DefeatPanel"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="DefeatPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.25, 1)
+theme_override_font_sizes/font_size = 26
+text = "THE LIVING NUCLEUS FELL..."
+horizontal_alignment = 1
+
+[node name="SubLabel" type="Label" parent="DefeatPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "The Heart Core was shattered by invaders."
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="DefeatPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+theme_override_font_sizes/font_size = 13
+text = "WAVES SURVIVED: 0\nINVADERS SLAIN: 0\nTRAPS TRIGGERED: 0\nMEMORIES FORMED: 0\nTOTAL GOLD HARVESTED: 0 G"
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="DefeatPanel/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="RestartBtn" type="Button" parent="DefeatPanel/VBox/HBox"]
+custom_minimum_size = Vector2(160, 38)
+layout_mode = 2
+text = "REAWAKEN CORE"
+
+[node name="TitleBtn" type="Button" parent="DefeatPanel/VBox/HBox"]
+custom_minimum_size = Vector2(160, 38)
+layout_mode = 2
+text = "RETURN TO TITLE"
+
+[node name="VictoryPanel" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(460, 340)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -170.0
+offset_right = 230.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_Panel")
+
+[node name="VBox" type="VBoxContainer" parent="VictoryPanel"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 12
+
+[node name="TitleLabel" type="Label" parent="VictoryPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.9, 0.45, 1)
+theme_override_font_sizes/font_size = 26
+text = "THE DUNGEON ENDURES!"
+horizontal_alignment = 1
+
+[node name="SubLabel" type="Label" parent="VictoryPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.75, 1)
+theme_override_font_sizes/font_size = 13
+text = "All incursions repelled. The Grand Inquisitor broken."
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="VictoryPanel/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+theme_override_font_sizes/font_size = 13
+text = "WAVES SURVIVED: 5\nINVADERS SLAIN: 0\nTRAPS TRIGGERED: 0\nMEMORIES FORMED: 0\nTOTAL GOLD HARVESTED: 0 G"
+horizontal_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="VictoryPanel/VBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 16
+
+[node name="RestartBtn" type="Button" parent="VictoryPanel/VBox/HBox"]
+custom_minimum_size = Vector2(170, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+text = "REINCARNATE"
+
+[node name="TitleBtn" type="Button" parent="VictoryPanel/VBox/HBox"]
+custom_minimum_size = Vector2(160, 38)
+layout_mode = 2
+text = "RETURN TO TITLE"
+
+[node name="LoreModal" parent="." instance=ExtResource("2_lore")]
+visible = false
+layout_mode = 1
+
+[node name="SettingsModal" parent="." instance=ExtResource("3_settings")]
+visible = false
+layout_mode = 1

@@ -1,0 +1,152 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/LoreModal.gd" id="1_lore"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.08, 0.08, 0.12, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.68, 0.22, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 18.0
+expand_margin_top = 18.0
+expand_margin_right = 18.0
+expand_margin_bottom = 18.0
+
+[node name="LoreModal" type="PanelContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(720, 520)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -260.0
+offset_right = 360.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+script = ExtResource("1_lore")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.25, 1)
+theme_override_font_sizes/font_size = 20
+text = "THE LIVING DUNGEON: LORE & TACTICS"
+horizontal_alignment = 1
+
+[node name="JamContext" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.75, 0.9, 1)
+theme_override_font_sizes/font_size = 12
+text = "RRR Game Jam • Rewind (Dungeon Keeper 1997) • Reimagine • Reconnect"
+horizontal_alignment = 1
+
+[node name="HSeparator1" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 14
+
+[node name="Sec1Title" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
+theme_override_font_sizes/font_size = 15
+text = "1. THE REIMAGINED CORE: YOU ARE THE DUNGEON"
+
+[node name="Sec1Body" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.9, 1)
+text = "In the 1997 classic Dungeon Keeper, you managed a dungeon from above. In THE DUNGEON REMEMBERS, that perspective is turned inside out:
+You do not control the dungeon. You ARE the dungeon.
+The Dungeon Heart is your living nucleus. Its rhythmic thrum echoes through your corridors. When invaders strike your Heart, your vision quakes and your pulse quickens."
+autowrap_mode = 2
+
+[node name="Sec2Title" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "2. ADAPTIVE INVADERS & THE MEMORY CHAMBER"
+
+[node name="Sec2Body" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.9, 1)
+text = "Invaders are not mindless targets. As they navigate your branching corridors (North, Central, South), they suffer trap traumas, record hazard coordinates, and share intelligence across waves.
+• If they trigger traps in the Central Hall, surviving cohorts will bypass via the North or South flanks!
+• Inspect their collective intelligence anytime by pressing [M] to open the Memory Chamber.
+• Memories naturally decay over time unless reinforced by fresh encounters."
+autowrap_mode = 2
+
+[node name="Sec3Title" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 15
+text = "3. DEFENSE ARSENAL: TRAPS & MINIONS"
+
+[node name="Sec3Body" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.9, 1)
+text = "TRAPS (Build on corridor floors during Preparation):
+• Spike Trap (40G): Concealed floor spikes dealing 35 physical puncture damage.
+• Falling Rock (60G): Massive stone slab dealing 55 crush damage + 1.2s stun.
+• Poison Fog (50G): Toxic gas cloud with lingering DoT + 35% movement slow.
+• Illusion Trap (35G): Projects phantom horrors that deal 0 damage but inject false terror into invader memory, tricking them into avoiding that hallway! (Beware: Mages dispel illusions).
+
+MINIONS (Stationary corridor defenders):
+• Goblin (40G, 5E): Hardy front-line club fighter.
+• Shadow Beast (70G, 10E): Swift predator with lethal leaping pounce strikes.
+• Mimic (60G, 15E): Deceptively rests as a treasure chest, springing a 45 damage surprise ambush bite when intruders draw near."
+autowrap_mode = 2
+
+[node name="Sec4Title" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.5, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "4. THE LIVING DUNGEON SHIFT"
+
+[node name="Sec4Body" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.9, 1)
+text = "Your dungeon is alive and malleable. Spend 15 Essence to trigger a Living Dungeon Shift:
+Impassable living stone barriers erupt across the North Flank corridor for 10 seconds, forcing all invaders to dynamically reroute through your Central and South killzones!"
+autowrap_mode = 2
+
+[node name="Sec5Title" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.3, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "5. THE CLIMAX: THE GRAND INQUISITOR (WAVE 5)"
+
+[node name="Sec5Body" type="Label" parent="VBox/Scroll/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.9, 1)
+text = "Survive Waves 1 through 4 to face The Grand Inquisitor Aurelius.
+The Inquisitor synthesizes memory records from ALL fallen predecessors to choose the route that counters your trap defenses. Below 50% HP, he enters 'Zealot's Wrath', surging forward with devastating speed and fury. Slay him to achieve complete Dungeon Victory!"
+autowrap_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 38)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
+text = "RETURN TO SANCTUM"

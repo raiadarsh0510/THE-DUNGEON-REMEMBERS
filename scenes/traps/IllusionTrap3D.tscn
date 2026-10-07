@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/traps/IllusionTrap3D.gd" id="1_illusion"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1"]
+height = 1.2
+radius = 1.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_Stone"]
+albedo_color = Color(0.2, 0.2, 0.22, 1)
+roughness = 0.9
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_Pedestal"]
+material = SubResource("Mat_Stone")
+top_radius = 0.45
+bottom_radius = 0.5
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="Mat_GoldPhantom"]
+transparency = 1
+albedo_color = Color(1, 0.85, 0.3, 0.85)
+emission_enabled = true
+emission = Color(1, 0.8, 0.25, 1)
+emission_energy_multiplier = 1.8
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_Chest"]
+material = SubResource("Mat_GoldPhantom")
+size = Vector3(0.65, 0.45, 0.45)
+
+[node name="IllusionTrap3D" type="Node3D" groups=["traps"]]
+script = ExtResource("1_illusion")
+
+[node name="Pedestal" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("CylinderMesh_Pedestal")
+
+[node name="TriggerArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TriggerArea"]
+shape = SubResource("CylinderShape3D_1")
+
+[node name="PhantomChest" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+
+[node name="ChestMesh" type="MeshInstance3D" parent="PhantomChest"]
+mesh = SubResource("BoxMesh_Chest")
+
+[node name="AuraLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+light_color = Color(1, 0.85, 0.3, 1)
+light_energy = 1.8
+omni_range = 4.5

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/vfx/DamageNumber3D.gd" id="1_dmg"]
+
+[node name="DamageNumber3D" type="Node3D"]
+script = ExtResource("1_dmg")
+
+[node name="Label3D" type="Label3D" parent="."]
+billboard = 1
+double_sided = false
+no_depth_test = true
+modulate = Color(1, 0.25, 0.2, 1)
+outline_modulate = Color(0, 0, 0, 1)
+text = "-35"
+font_size = 28
+outline_size = 6

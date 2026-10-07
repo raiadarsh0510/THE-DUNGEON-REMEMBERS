@@ -1,0 +1,433 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/HUD.gd" id="1_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/MemoryChamber.tscn" id="2_memchamber"]
+[ext_resource type="PackedScene" path="res://scenes/ui/LoreModal.tscn" id="3_lore"]
+[ext_resource type="PackedScene" path="res://scenes/ui/SettingsModal.tscn" id="4_settings"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.12, 0.12, 0.14, 0.85)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.85, 0.15, 0.25, 0.95)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boss_fill"]
+bg_color = Color(0.95, 0.75, 0.15, 0.95)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="HUD" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_hud")
+
+[node name="RootMargin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+
+[node name="VBox" type="VBoxContainer" parent="RootMargin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="TopBar" type="HBoxContainer" parent="RootMargin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="HeartBox" type="VBoxContainer" parent="RootMargin/VBox/TopBar"]
+layout_mode = 2
+
+[node name="HeartLabel" type="Label" parent="RootMargin/VBox/TopBar/HeartBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.6, 0.65, 1)
+theme_override_font_sizes/font_size = 14
+text = "HEART HP: 100 / 100"
+
+[node name="HeartBar" type="ProgressBar" parent="RootMargin/VBox/TopBar/HeartBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+value = 100.0
+show_percentage = false
+
+[node name="WaveBox" type="VBoxContainer" parent="RootMargin/VBox/TopBar"]
+layout_mode = 2
+
+[node name="WaveLabel" type="Label" parent="RootMargin/VBox/TopBar/WaveBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 15
+text = "WAVE: 1 / 5"
+
+[node name="StateLabel" type="Label" parent="RootMargin/VBox/TopBar/WaveBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 13
+text = "STATE: PREPARATION"
+
+[node name="ResourcesBox" type="HBoxContainer" parent="RootMargin/VBox/TopBar"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="GoldLabel" type="Label" parent="RootMargin/VBox/TopBar/ResourcesBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+text = "Gold: 100"
+
+[node name="EssenceLabel" type="Label" parent="RootMargin/VBox/TopBar/ResourcesBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.45, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "Essence: 25"
+
+[node name="EnergyLabel" type="Label" parent="RootMargin/VBox/TopBar/ResourcesBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.95, 0.9, 1)
+theme_override_font_sizes/font_size = 15
+text = "Energy: 50"
+
+[node name="Spacer" type="Control" parent="RootMargin/VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MemoryButton" type="Button" parent="RootMargin/VBox/TopBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 14
+text = "Memory Chamber [M]"
+
+[node name="StartWaveButton" type="Button" parent="RootMargin/VBox/TopBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 36)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Start Wave 1"
+
+[node name="PauseButton" type="Button" parent="RootMargin/VBox/TopBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.95, 1)
+theme_override_font_sizes/font_size = 14
+text = "PAUSE"
+
+[node name="BossBanner" type="PanelContainer" parent="RootMargin/VBox"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(520, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="BossMargin" type="MarginContainer" parent="RootMargin/VBox/BossBanner"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="BossVBox" type="VBoxContainer" parent="RootMargin/VBox/BossBanner/BossMargin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="BossTitle" type="Label" parent="RootMargin/VBox/BossBanner/BossMargin/BossVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_font_sizes/font_size = 13
+text = "THE GRAND INQUISITOR AURELIUS (PHASE 1)"
+horizontal_alignment = 1
+
+[node name="BossHPBar" type="ProgressBar" parent="RootMargin/VBox/BossBanner/BossMargin/BossVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(480, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_boss_fill")
+value = 100.0
+show_percentage = false
+
+[node name="CenterSpacer" type="Control" parent="RootMargin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="BottomBar" type="HBoxContainer" parent="RootMargin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TrapLabel" type="Label" parent="RootMargin/VBox/BottomBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 12
+text = "TRAPS:"
+
+[node name="SpikeButton" type="Button" parent="RootMargin/VBox/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+text = "Spike (40G)"
+
+[node name="RockButton" type="Button" parent="RootMargin/VBox/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+text = "Rock (60G)"
+
+[node name="PoisonButton" type="Button" parent="RootMargin/VBox/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+text = "Poison (50G)"
+
+[node name="IllusionButton" type="Button" parent="RootMargin/VBox/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.5, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Illusion (35G)"
+
+[node name="VSep1" type="VSeparator" parent="RootMargin/VBox/BottomBar"]
+layout_mode = 2
+
+[node name="MonsterLabel" type="Label" parent="RootMargin/VBox/BottomBar"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.45, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "MINIONS:"
+
+[node name="GoblinButton" type="Button" parent="RootMargin/VBox/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+text = "Goblin (40G)"
+
+[node name="ShadowButton" type="Button" parent="RootMargin/VBox/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.7, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "Shadow (70G)"
+
+[node name="MimicButton" type="Button" parent="RootMargin/VBox/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(95, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.7, 0.3, 1)
+theme_override_font_sizes/font_size = 12
+text = "Mimic (60G)"
+
+[node name="VSep2" type="VSeparator" parent="RootMargin/VBox/BottomBar"]
+layout_mode = 2
+
+[node name="ShiftButton" type="Button" parent="RootMargin/VBox/BottomBar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 1, 1)
+theme_override_font_sizes/font_size = 12
+text = "DUNGEON SHIFT (15E)"
+
+[node name="HintBar" type="HBoxContainer" parent="RootMargin/VBox"]
+layout_mode = 2
+
+[node name="HintLabel" type="Label" parent="RootMargin/VBox/HintBar"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.75, 0.75, 0.8, 1)
+theme_override_font_sizes/font_size = 13
+text = "Preparation Phase: Click floor to place Spike Trap (40 Gold). Press [M] for Memory Chamber. [Esc] to Pause."
+
+[node name="MemoryChamber" parent="." instance=ExtResource("2_memchamber")]
+unique_name_in_owner = true
+visible = false
+
+[node name="PausePanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(340, 290)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -145.0
+offset_right = 170.0
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMargin" type="MarginContainer" parent="PausePanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 20
+
+[node name="PauseVBox" type="VBoxContainer" parent="PausePanel/PauseMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PauseTitle" type="Label" parent="PausePanel/PauseMargin/PauseVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "DUNGEON SLUMBER (PAUSED)"
+horizontal_alignment = 1
+
+[node name="HSepPause" type="HSeparator" parent="PausePanel/PauseMargin/PauseVBox"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PausePanel/PauseMargin/PauseVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+text = "RESUME AWAKENING"
+
+[node name="PauseLoreButton" type="Button" parent="PausePanel/PauseMargin/PauseVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "LORE & TACTICS"
+
+[node name="PauseSettingsButton" type="Button" parent="PausePanel/PauseMargin/PauseVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "AUDIO & SETTINGS"
+
+[node name="PauseRestartButton" type="Button" parent="PausePanel/PauseMargin/PauseVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "RESTART RUN"
+
+[node name="PauseTitleButton" type="Button" parent="PausePanel/PauseMargin/PauseVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "RETURN TO TITLE"
+
+[node name="GameOverPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(460, 280)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -230.0
+offset_top = -140.0
+offset_right = 230.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="GameOverPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 22
+
+[node name="VBox" type="VBoxContainer" parent="GameOverPanel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="GameOverTitle" type="Label" parent="GameOverPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 22
+text = "THE DUNGEON HEART FELL..."
+horizontal_alignment = 1
+
+[node name="GameOverSubtitle" type="Label" parent="GameOverPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.85, 1)
+theme_override_font_sizes/font_size = 14
+text = "The invaders conquered the sanctum.
+Reincarnate the living dungeon to adapt."
+horizontal_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="GameOverPanel/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_font_sizes/font_size = 13
+text = "Waves Survived: 0 / 5   |   Invaders Slain: 0
+Traps Triggered: 0   |   Memories Recorded: 0"
+horizontal_alignment = 1
+
+[node name="GameOverButtons" type="HBoxContainer" parent="GameOverPanel/Margin/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="GameOverPanel/Margin/VBox/GameOverButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_font_sizes/font_size = 15
+text = "Reincarnate Dungeon"
+
+[node name="GameOverTitleButton" type="Button" parent="GameOverPanel/Margin/VBox/GameOverButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.85, 0.9, 1)
+theme_override_font_sizes/font_size = 15
+text = "Return to Title"
+
+[node name="LoreModal" parent="." instance=ExtResource("3_lore")]
+unique_name_in_owner = true
+visible = false
+
+[node name="SettingsModal" parent="." instance=ExtResource("4_settings")]
+unique_name_in_owner = true
+visible = false

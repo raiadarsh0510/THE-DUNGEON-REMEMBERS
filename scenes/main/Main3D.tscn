@@ -1,0 +1,20 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/Main3D.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/dungeon/Dungeon3D.tscn" id="2_dungeon"]
+[ext_resource type="PackedScene" path="res://scenes/camera/DungeonCamera3D.tscn" id="3_camera"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD3D.tscn" id="4_hud"]
+[ext_resource type="Script" path="res://scripts/vfx/FXManager3D.gd" id="5_fx"]
+
+[node name="Main3D" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="Dungeon3D" parent="." instance=ExtResource("2_dungeon")]
+
+[node name="DungeonCamera3D" parent="." instance=ExtResource("3_camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="HUD3D" parent="." instance=ExtResource("4_hud")]
+
+[node name="FXManager3D" type="Node3D" parent="."]
+script = ExtResource("5_fx")
